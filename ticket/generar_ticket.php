@@ -1,4 +1,3 @@
-
 <?php
 
 // Include the main TCPDF library (search for installation path).
@@ -35,11 +34,31 @@ foreach($tickets as $ticket){
     $fecha_ingreso = $ticket['fecha_ingreso'];
     $hora_ingreso = $ticket['hora_ingreso'];
     $user_sesion = $ticket['user_sesion'];
+    $placa_auto = $ticket['placa_auto'];
+}
+
+//informacion de usuarios
+$query_usuario = $pdo->prepare("SELECT * FROM tb_usuarios WHERE Estado = '1' ");
+$query_usuario->execute();
+$usuarios = $query_usuario->fetchAll(PDO::FETCH_ASSOC);
+foreach($usuarios as $usuario){
+
+    $nombre = $usuario['nombres'];
+    $email = $usuario['email'];
+}
+
+//informacion de roles
+$query_roles = $pdo->prepare("SELECT * FROM tb_roles WHERE estado = '1' ");
+$query_roles->execute();
+$roles = $query_roles->fetchAll(PDO::FETCH_ASSOC);
+foreach($roles as $role) {
+    $id_rol = $role['id_rol'];
+    $nombre_rol = $role['nombre'];
 }
 
 
 
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(79,80), true, 'UTF-8', false);
+$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(79,120), true, 'UTF-8', false);
 
 
 $pdf->setCreator(PDF_CREATOR);
@@ -56,10 +75,10 @@ $pdf->setPrintFooter(false);
 $pdf->setDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 
-$pdf->setMargins(5, 5, 5);
+$pdf->setMargins(2, 2, 5);
 
 
-$pdf->setAutoPageBreak(true, 5);
+$pdf->setAutoPageBreak(true, 2);
 
 
 
@@ -71,10 +90,12 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
     $pdf->setLanguageArray($l);
 }
 
+
+
 // ---------------------------------------------------------
 
 // set font
-$pdf->setFont('Helvetica', '', 7);
+$pdf->setFont('Helvetica', '', 8);
 
 // add a page
 $pdf->AddPage();
@@ -86,25 +107,28 @@ $pdf->AddPage();
 $html = '
 <div>
     <p style="text-align: center">
-        ---------------------------------------------------------------------- <br>
         <b>'.$nombre_parqueo.'</b> <br>
         '.$actividad_empresa.' <br>
         SUCURSAL '.$sucursal.' <br>
-        '.$direccion.' <br>
-        ZONA: '.$zona.' <br>
-        TELÉFONO: '.$telefono.' <br>
-        '.$departamento_ciudad.' - '.$pais.' <br>
-        Insertar la imagen en el encabezado
+        '.$telefono.' <br>
+        '.$direccion.', '.$zona.', '.$departamento_ciudad.' - '.$pais.'
+        ---------------------------------------------------------------------------
+        <b style="font-size: large">TICKET Nº [ '.$id_ticket.' ]</b> <br>
+        <b style="font-size: large">PUESTO: '.$cuviculo.'</b> <br>
+        <b style="font-size: large">['.$fecha_ingreso.' '.$hora_ingreso.']</b> 
+        ---------------------------------------------------------------------------
         <div style="text-align: left">
-            <b>DATOS DEL CLIENTE</b> <br>
-            <b>SEÑOR(A): </b> '.$nombre_cliente.' <br>
+            <b>DATOS DEL REGISTRO</b> <br>
+            <b>RESPONSABLE: </b> '.$placa_auto.' <br>
             <b>CI.: </b> '.$nit_ci.'  <br>
-            -------------------------------------------------------------------------------- <br>
-        <b>Puesto: </b> '.$cuviculo.' <br>
-        <b>Fecha de ingreso: </b> '.$fecha_ingreso.' <br>
-        <b>Hora de ingreso: </b> '.$hora_ingreso.' <br>
-         -------------------------------------------------------------------------------- <br>
-         <b>USUARIO:</b> '.$user_sesion.'
+            <b style="font-size: large">PLACA: '.$placa_auto.'</b>  <br>
+
+         -------------------------------------------------------------------------- <br>
+         <b>USUARIO: </b> '.$user_sesion.' - '.$nombre_rol.'<br>
+         -------------------------------------------------------------------------- <br>
+         
+        
+        
         </div>
     </p>
     
@@ -116,9 +140,23 @@ $html = '
 $pdf->writeHTML($html, true, false, true, false, '');
 
 
+// CODE 128 AUTO
+$pdf->Cell(0, 0, '', 0, 1);
 
+// Ajustar el tamaño de la fuente
+$pdf->SetFont('', '', 6); // Cambia '10' al tamaño de fuente deseado
 
+$style = array(
+    'border' => true,  // Agrega un borde al código de barras
+    'padding' => 2.5,    // Espacio alrededor del código de barras
+    'fgcolor' => array(0,0,0), // Color de las líneas del código de barras (negro)
+    'bgcolor' => false, // Sin color de fondo
+    'text' => true,     // Muestra el texto del código de barras
+);
 
+//$pdf->write1DBarcode('www.quickparkse.com/', 'C128', '5', '', '', 12, 0.4, $style, 'N');
+//
+//$pdf->Ln();
 
 
 

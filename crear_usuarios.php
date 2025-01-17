@@ -46,8 +46,8 @@ include('layout\admin\datos_usuario_sesion.php');
                                         <input type="password" class="form-control" id="password_user">
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-outline-primary" id="btn_guardar">Guardar</button>
-                                        <a href="<?php echo $URL;?>lista_usuarios.php" class="btn btn-default">Cancelar</a>
+                                        <button class="btn btn-outline-primary" id="btn_guardar"><b>Guardar</b></button>
+                                        <a href="<?php echo $URL;?>lista_usuarios.php" class="btn btn btn-outline-secondary">Cancelar</a>
                                     </div>
                                     <div id="respuesta">
 

@@ -21,7 +21,7 @@ include('..\layout\admin\datos_usuario_sesion.php');
         <br>
 
         <div class="container">
-            <p class="fs-1" style="font-size: 40px; margin-left: 15px">Eliminación de Rol</p>
+            <p class="fs-1" style="font-size: 40px"><b>Eliminación de Rol</b></p>
 
             <?php
             $id_rol = $_GET['id'];
@@ -39,7 +39,7 @@ include('..\layout\admin\datos_usuario_sesion.php');
                     <div class="col-md-6">
                         <div class="card card-danger" style="border: 1px  solid #606060; margin-left: 10px">
                             <div class="card-header" style="background-color; font-size: 25px ; color: #ffffff">
-                                <h4>¿Estás seguro de eliminar este registro?</h4>
+                                <h4><b>¿Estás seguro de eliminar este Rol?</b></h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -48,8 +48,8 @@ include('..\layout\admin\datos_usuario_sesion.php');
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-outline-danger" id="btn_eliminar">Borrar</button>
-                                    <a href="<?php echo $URL;?>/roles" class="btn btn-default">Cancelar</a>
+                                    <button class="btn btn-outline-danger" id="btn_eliminar"><b>Eliminar</b></button>
+                                    <a href="<?php echo $URL;?>/roles" class="btn btn-outline-secondary">Cancelar</a>
                                 </div>
                                 <div id="respuesta"></div>
                             </div>

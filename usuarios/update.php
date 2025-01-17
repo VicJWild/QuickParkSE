@@ -37,7 +37,7 @@ include('..\layout\admin\menu.php');
       }
       ?>
 
-  <p class="fs-1" style="font-size: 35px; margin-bottom: 5px" >Actualización de Usuarios</p>
+      <p class="fs-1" style="font-size: 40px"><b>Actualización de Usuarios</b></p>
 
       <div class="container">
           <div class="row">
@@ -45,7 +45,7 @@ include('..\layout\admin\menu.php');
 
                   <div class="card card-success" style="border: 1px  solid #606060">
                       <div class="card-header" style="background-color: #28a745; color: #ffffff; font-size: 25px">
-                          <h4>Editar Información</h4>
+                          <h4><b>Editar Información</b></h4>
 
                       </div>
                       <div class="card-body">
@@ -62,8 +62,8 @@ include('..\layout\admin\menu.php');
                               <input type="text" class="form-control" id="password_user" value="<?php echo $password_user;?>">
                           </div>
                           <div class="form-group">
-                              <button class="btn btn-outline-success" id="btn_editar">Actualizar</button>
-                              <a href="<?php echo $URL;?>lista_usuarios.php" class="btn btn-default">Cancelar</a>
+                              <button class="btn btn-outline-success" id="btn_editar"><b>Actualizar</b></button>
+                              <a href="<?php echo $URL;?>lista_usuarios.php" class="btn btn-outline-secondary">Cancelar</a>
                           </div>
                           <div id="respuesta">
 

@@ -37,7 +37,7 @@ include('..\layout\admin\menu.php');
       }
       ?>
 
-  <p class="fs-1" style="font-size: 35px; margin-bottom: 5px" >Eliminación del Usuario</p>
+      <p class="fs-1" style="font-size: 40px"><b>Eliminación de Usuarios</b></p>
 
       <div class="container">
           <div class="row">
@@ -45,7 +45,7 @@ include('..\layout\admin\menu.php');
 
                   <div class="card card-danger" style="border: 1px solid #777777">
                       <div class="card-header">
-                          <h3 class="card-title">¿Esta seguro de eliminar este registro?</h3>
+                          <h3 class="card-title"><b>¿Está seguro de eliminar este registro?</b></h3>
                       </div>
                       <div class="card-body">
                           <div class="form-group">
@@ -61,8 +61,8 @@ include('..\layout\admin\menu.php');
                               <input type="text" class="form-control" id="password_user" value="<?php echo $password_user;?>" disabled>
                           </div>
                           <div class="form-group">
-                              <button class="btn btn-outline-danger" id="btn_borrar">Borrar</button>
-                              <a href="<?php echo $URL;?>lista_usuarios.php" class="btn btn-default">Cancelar</a>
+                              <button class="btn btn-outline-danger" id="btn_borrar"><b>Eliminar</b></button>
+                              <a href="<?php echo $URL;?>lista_usuarios.php" class="btn btn-outline-secondary">Cancelar</a>
                           </div>
                           <div id="respuesta">
 

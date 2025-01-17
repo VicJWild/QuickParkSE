@@ -15,7 +15,7 @@ include('../layout/admin/datos_usuario_sesion.php');
         <br>
         <div class="container">
 
-            <h2>Eliminación de la información</h2>
+            <p class="fs-1" style="font-size: 40px"><b>Eliminación de Información</b></p>
 
             <br>
             <div class="row">
@@ -23,7 +23,7 @@ include('../layout/admin/datos_usuario_sesion.php');
 
                     <div class="card card-outline card-danger">
                         <div class="card-header">
-                            <h3 class="card-title">¿Esta seguro de eliminar este registro?</h3>
+                            <h3 class="card-title"><i><b>¿Esta seguro de eliminar este registro?    </b></i></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -95,13 +95,13 @@ include('../layout/admin/datos_usuario_sesion.php');
 
                             <hr>
 
-                            <div class="row">
+                            <div class="row" style="margin-top: 10px">
                                 <div class="col-md-6">
-                                    <a href="informaciones.php" class="btn btn-default btn-block">Cancelar</a>
+                                    <a href="informaciones.php" class="btn btn-outline-secondary btn-block">Cancelar</a>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-danger btn-block" id="btn_borrar_informacion">
-                                        Eliminar
+                                    <button class="btn btn-outline-danger btn-block" id="btn_borrar_informacion">
+                                        <b>Eliminar</b>
                                     </button>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@ include('../layout/admin/datos_usuario_sesion.php');
     <!-- /.content-wrapper -->
     <?php include('../layout/admin/footer.php'); ?>
 </div>
-<?php include('../layout/admin/footer_link.php'); ?>
+<?php include('../layout/admin/footerlinks.php'); ?>
 </body>
 </html>
 

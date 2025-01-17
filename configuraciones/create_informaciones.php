@@ -23,7 +23,7 @@ include('../layout/admin/datos_usuario_sesion.php');
 
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title"><i>¡Registre los datos con atención!</i></h3>
+                            <h3 class="card-title"><i><b>¡Registre los datos con atención!</b></i></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -83,7 +83,7 @@ include('../layout/admin/datos_usuario_sesion.php');
                                 </div>
                                 <div class="col-md-6">
                                     <button class="btn btn-outline-primary btn-block" id="btn_registrar_informacion">
-                                        Registrar
+                                        <b>Registrar</b>
                                     </button>
                                 </div>
                             </div>

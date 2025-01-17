@@ -45,7 +45,7 @@ include('../layout/admin/datos_usuario_sesion.php');
                 } );
             </script>
 
-            <a href="create_informaciones.php" class="btn btn-primary">Registrar nuevo</a> <br><br>
+            <a href="create_informaciones.php" class="btn btn-outline-primary"><b>Registrar nuevo</b></a> <br><br>
             <table id="table_id" class="table table-bordered table-sm table-striped">
                 <thead>
                 <th><center>Nro</center></th>
@@ -89,8 +89,8 @@ include('../layout/admin/datos_usuario_sesion.php');
                         <td><?php echo $pais;?></td>
                         <td>
                             <center>
-                                <a href="update_configuraciones.php?id=<?php echo $id_informacion; ?>" class="btn btn-success">Editar</a>
-                                <a href="delete_configuraciones.php?id=<?php echo $id_informacion; ?>" class="btn btn-danger">Borrar</a>
+                                <a href="update_configuraciones.php?id=<?php echo $id_informacion; ?>" class="btn btn-outline-success"><b>Editar</b></a>
+                                <a href="delete_configuraciones.php?id=<?php echo $id_informacion; ?>" class="btn btn-outline-danger"><b>Eliminar</b></a>
                             </center>
                         </td>
                     </tr>
@@ -101,7 +101,7 @@ include('../layout/admin/datos_usuario_sesion.php');
             </table>
 
             <hr>
-            <a href="generar-reporte.php" class="btn btn-primary">Generar reporte
+            <a href="generar-reporte.php" class="btn btn-secondary">Generar reporte
                 <i class="fa fa">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-bar-graph" viewBox="0 0 16 16">
                         <path d="M10 13.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v6zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z"/>

@@ -15,14 +15,14 @@ include('../layout/admin/datos_usuario_sesion.php');
         <br>
         <div class="container">
 
-            <p class="fs-1" style="font-size: 40px; margin-left: 15px"><b>Listado de Roles</b></p>
+            <p class="fs-1" style="font-size: 40px"><b>Listado de Roles</b></p>
             <br>
             <div class="row">
                 <div class="col-md-12">
 
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Listado de usuario</h3>
+                            <h3 class="card-title"><b>Roles</b></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -59,16 +59,14 @@ include('../layout/admin/datos_usuario_sesion.php');
                                                     <?php
                                                     if($rol == ""){ ?>
                                                         <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal<?php echo $id;?>">
-                                                            Asignar
-                                                        </button>
+                                                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal<?php echo $id;?>"><b>Asignar</b></button>
 
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="exampleModal<?php echo $id;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Asingar rol</h5>
+                                                                    <h5 class="modal-title" id="exampleModalLabel"><b>Asignar Rol</b></h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
@@ -115,8 +113,8 @@ include('../layout/admin/datos_usuario_sesion.php');
                                                                         </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                                    <button type="submit" class="btn btn-outline-success">Asignar rol</button>
+                                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                                                                    <button type="submit" class="btn btn-outline-success"><b>Asignar</b></button>
                                                                 </div>
                                                                 </form>
                                                             </div>

@@ -83,8 +83,11 @@ foreach($datos_tickets as $datos_ticket){
     $contador_ticket = $contador_ticket + 1;
 }
 if($contador_ticket == "0"){
-    echo "No hay registro duplicado";
+//    echo "No hay registro duplicado";
     ?>
+    <div class="alert alert-success">
+        <b>!No hay registro duplicado!</b>
+    </div>
     <script>
         $('#btn_registrar_ticket<?php echo $id_map;?>').removeAttr('disabled');
     </script>
@@ -93,7 +96,7 @@ if($contador_ticket == "0"){
     // echo "este vehicúlo ya esta dentro del parqueo";
     ?>
     <div class="alert alert-danger">
-        Este vehicúlo ya está dentro del estacionamiento
+        <b>¡Este vehiculo ya se encuentra registrado!</b>
     </div>
     <script>
         $('#btn_registrar_ticket<?php echo $id_map;?>').attr('disabled','disabled');

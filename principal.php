@@ -67,7 +67,7 @@ include('layout\admin\datos_usuario_sesion.php');
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Entrada de Vehiculo</h5>
+                                                                <h5 class="modal-title" id="exampleModalLabel"><b>Entrada de Vehiculo</b></h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
@@ -143,15 +143,15 @@ include('layout\admin\datos_usuario_sesion.php');
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                                <button type="button" class="btn btn-primary" id="btn_registrar_ticket<?php echo $id_map;?>">Imprimir ticket</button>
+                                                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                                                                <button type="button" class="btn btn-outline-primary" id="btn_registrar_ticket<?php echo $id_map;?>"><b>Imprimir ticket</b></button>
                                                                 <script>
                                                                     $('#btn_registrar_ticket<?php echo $id_map;?>').click(function () {
 
                                                                         var placa = $('#placa_buscar<?php echo $id_map;?>').val();
                                                                         var nombre_cliente = $('#nombre_cliente<?php echo $id_map;?>').val();
                                                                         var nit_ci = $('#nit_ci<?php echo $id_map;?>').val();
-                                                                        var telefono_cliente = $('#telefono_cliente<?php echo $id_map;?>').val()
+                                                                        var telefono_cliente = $('#telefono_cliente<?php echo $id_map;?>').val();
                                                                         var fecha_ingreso = $('#fecha_ingreso<?php echo $id_map;?>').val();
                                                                         var hora_ingreso = $('#hora_ingreso<?php echo $id_map;?>').val();
                                                                         var cuviculo = $('#cuviculo<?php echo $id_map;?>').val();
@@ -181,12 +181,12 @@ include('layout\admin\datos_usuario_sesion.php');
                                                                             });
 
                                                                             var url_2 = 'clientes/controller_registrar_clientes.php';
-                                                                            $.get(url_2,{nombre_cliente:nombre_cliente,nit_ci:nit_ci,placa:placa},function (datos) {
+                                                                            $.get(url_2,{nombre_cliente:nombre_cliente,nit_ci:nit_ci,telefono_cliente:telefono_cliente,placa:placa},function (datos) {
                                                                                 $('#respuesta_ticket').html(datos);
                                                                             });
 
                                                                             var url_3 = 'ticket/controller_registrar_ticket.php';
-                                                                            $.get(url_3,{placa:placa,nombre_cliente:nombre_cliente,nit_ci:nit_ci,fecha_ingreso:fecha_ingreso,hora_ingreso:hora_ingreso,cuviculo:cuviculo,user_session:user_session},function (datos) {
+                                                                            $.get(url_3,{placa:placa,nombre_cliente:nombre_cliente,nit_ci:nit_ci,telefono_cliente:telefono_cliente,fecha_ingreso:fecha_ingreso,hora_ingreso:hora_ingreso,cuviculo:cuviculo,user_session:user_session},function (datos) {
                                                                                 $('#respuesta_ticket').html(datos);
                                                                             });
 
@@ -326,7 +326,7 @@ include('layout\admin\datos_usuario_sesion.php');
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p><?php echo $estado_espacio;?></p>
+
                                             </center>
                                         </div>
                                         <?php

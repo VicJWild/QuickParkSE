@@ -48,8 +48,8 @@ include('layout\admin\datos_usuario_sesion.php');
                     <td><?php echo $email; ?></td>
                     <td>
                         <center>
-                            <a href="usuarios\update.php?id=<?php echo $id;?>" class="btn btn-outline-success">Editar</a>
-                            <a href="usuarios/delete.php?id=<?php echo $id;?>"class="btn btn-outline-danger">Eliminar</a>
+                            <a href="usuarios\update.php?id=<?php echo $id;?>" class="btn btn-outline-success"><b>Editar</b></a>
+                            <a href="usuarios/delete.php?id=<?php echo $id;?>"class="btn btn-outline-danger"><b>Eliminar</b></a>
                         </center>
                     </td>
                 </tr>

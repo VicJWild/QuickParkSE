@@ -23,7 +23,7 @@ include('../layout/admin/datos_usuario_sesion.php');
 
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title"><i>Llene todos los campos</i></h3>
+                            <h3 class="card-title"><i><b>Llene todos los campos</b></i></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -65,11 +65,11 @@ include('../layout/admin/datos_usuario_sesion.php');
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="../principal.php" class="btn btn-default btn-block">Cancelar</a>
+                                    <a href="../principal.php" class="btn btn-outline-secondary btn-block">Cancelar</a>
                                 </div>
                                 <div class="col-md-6">
                                     <button class="btn btn-outline-primary btn-block" id="btn_registrar">
-                                        Registrar
+                                        <b>Registrar</b>
                                     </button>
                                 </div>
                             </div>

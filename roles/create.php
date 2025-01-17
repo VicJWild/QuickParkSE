@@ -23,14 +23,14 @@ include('..\layout\admin\datos_usuario_sesion.php');
         <br>
 
         <div class="container">
-            <p class="fs-1" style="font-size: 40px; margin-left: 15px"><b>Crear un nuevo Rol</b></p>
+            <p class="fs-1" style="font-size: 40px"><b>Crear un nuevo Rol</b></p>
 
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card" style="border: 1px  solid #606060; margin-left: 10px">
                             <div class="card-header" style="background-color: #007bff; font-size: 25px ; color: #ffffff">
-                                <h4>Nuevo Rol</h4>
+                                <h4><b>Nuevo Rol</b></h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -39,8 +39,8 @@ include('..\layout\admin\datos_usuario_sesion.php');
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-outline-primary" id="btn_guardar">Guardar</button>
-                                    <a href="<?php echo $URL;?>/roles" class="btn btn-default">Cancelar</a>
+                                    <button class="btn btn-outline-primary" id="btn_guardar"><b>Guardar</b></button>
+                                    <a href="<?php echo $URL;?>/roles" class="btn btn-outline-secondary">Cancelar</a>
                                 </div>
                                 <div id="respuesta">
 

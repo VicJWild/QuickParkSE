@@ -14,7 +14,7 @@ include('../layout/admin/datos_usuario_sesion.php');
         <br>
         <div class="container" style="">
 
-            <p class="fs-1" style="font-size: 40px; margin-left: 15px"><b>Listado de Roles</b></p>
+            <p class="fs-1" style="font-size: 40px"><b>Listado de Roles</b></p>
 
             <br>
 
@@ -69,7 +69,7 @@ include('../layout/admin/datos_usuario_sesion.php');
                                 <td><?php echo $nombre;?></td>
                                 <td>
                                     <center>
-                                        <a href="delete.php?id=<?php echo $id_rol; ?>" class="btn btn-outline-danger">Borrar</a>
+                                        <a href="delete.php?id=<?php echo $id_rol; ?>" class="btn btn-outline-danger"><b>Eliminar</b></a>
                                     </center>
                                 </td>
                             </tr>
