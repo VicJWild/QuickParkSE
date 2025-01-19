@@ -25,7 +25,7 @@ $sentencia->bindParam(':id_ticket',$id_ticket);
 if($sentencia->execute()){
 
     //actualizando el estado del cuviculo de ocupado a libre
-    $estado_espacio = "LIBRE";
+    $estado_espacio = "DISPONIBLE";
     $sentencia2 = $pdo->prepare("UPDATE tb_mapeos SET
     estado_espacio = :estado_espacio,
     fyh_actualizacion = :fyh_actualizacion 

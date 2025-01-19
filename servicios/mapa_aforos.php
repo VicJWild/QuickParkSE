@@ -66,7 +66,7 @@ include('../layout/admin/datos_usuario_sesion.php');
                             $contador = $contador + 1;
                             ?>
                             <tr>
-                                <td><center><?php echo $contador;?></center></td>
+                                <td><center><?php echo $id_map;?></center></td>
                                 <td><?php echo $nro_espacio;?></td>
                                 <td>
                                     <center>

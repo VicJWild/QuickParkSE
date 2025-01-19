@@ -1,5 +1,4 @@
 <?php
-
 // Include the main TCPDF library (search for installation path).
 require_once('../app/templeates/TCPDF-main/tcpdf.php');
 include('../app/config.php');
@@ -22,8 +21,10 @@ foreach($informacions as $informacion){
 }
 
 
-//cargar la información del ticket
-$query_tickets = $pdo->prepare("SELECT * FROM tb_tickets WHERE estado = '1' ");
+
+//cargar la información del ticket desde el id
+$id_ticket_get = $_GET['id'];
+$query_tickets = $pdo->prepare("SELECT * FROM tb_tickets WHERE id_ticket = '$id_ticket_get' AND estado = '1' ");
 $query_tickets->execute();
 $tickets = $query_tickets->fetchAll(PDO::FETCH_ASSOC);
 foreach($tickets as $ticket){
@@ -37,29 +38,8 @@ foreach($tickets as $ticket){
     $placa_auto = $ticket['placa_auto'];
 }
 
-//informacion de usuarios
-$query_usuario = $pdo->prepare("SELECT * FROM tb_usuarios WHERE Estado = '1' ");
-$query_usuario->execute();
-$usuarios = $query_usuario->fetchAll(PDO::FETCH_ASSOC);
-foreach($usuarios as $usuario){
 
-    $nombre = $usuario['nombres'];
-    $email = $usuario['email'];
-}
-
-//informacion de roles
-$query_roles = $pdo->prepare("SELECT * FROM tb_roles WHERE estado = '1' ");
-$query_roles->execute();
-$roles = $query_roles->fetchAll(PDO::FETCH_ASSOC);
-foreach($roles as $role) {
-    $id_rol = $role['id_rol'];
-    $nombre_rol = $role['nombre'];
-}
-
-
-
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(79,120), true, 'UTF-8', false);
-
+$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(79, 150), true, 'UTF-8', false);
 
 $pdf->setCreator(PDF_CREATOR);
 $pdf->setAuthor('Nicola Asuni');
@@ -95,19 +75,25 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->setFont('Helvetica', '', 8);
+$pdf->SetFont('helvetica', '', 7);
 
 // add a page
 $pdf->AddPage();
 
+$pdf->SetFont('helvetica', '', 7);
+
+
+// print a message
+$txt = "";
+$pdf->MultiCell(5, 5, $txt, 0, 'J', false, 1, 0, 0, true, 0, false, true, 0, 'T', false);
 
 
 
-// create some HTML content
+//Create some HTML content
 $html = '
 <div>
     <p style="text-align: center">
-        <b>'.$nombre_parqueo.'</b> <br>
+        <b style="font-size: larger">'.$nombre_parqueo.'</b> <br>
         '.$actividad_empresa.' <br>
         SUCURSAL '.$sucursal.' <br>
         '.$telefono.' <br>
@@ -118,13 +104,13 @@ $html = '
         <b style="font-size: large">['.$fecha_ingreso.' '.$hora_ingreso.']</b> 
         ---------------------------------------------------------------------------
         <div style="text-align: left">
-            <b>DATOS DEL REGISTRO</b> <br>
-            <b>RESPONSABLE: </b> '.$placa_auto.' <br>
-            <b>CI.: </b> '.$nit_ci.'  <br>
+            <b style="font-size: larger">DATOS DEL REGISTRO</b> <br>
+            <b style="font-size: large">RESPONSABLE: '.$nombre_cliente.'</b>  <br>
+            <b style="font-size: large">CI.: '.$nit_ci.'</b>   <br>
             <b style="font-size: large">PLACA: '.$placa_auto.'</b>  <br>
 
          -------------------------------------------------------------------------- <br>
-         <b>USUARIO: </b> '.$user_sesion.' - '.$nombre_rol.'<br>
+         <b style="font-size: large">USUARIO: '.$user_sesion.'</b> <br>
          -------------------------------------------------------------------------- <br>
          
         
@@ -134,30 +120,49 @@ $html = '
     
 
 </div>
+
 ';
+
 
 // output the HTML content
 $pdf->writeHTML($html, true, false, true, false, '');
 
 
-// CODE 128 AUTO
-$pdf->Cell(0, 0, '', 0, 1);
-
 // Ajustar el tamaño de la fuente
 $pdf->SetFont('', '', 6); // Cambia '10' al tamaño de fuente deseado
 
+
+// set style for barcode
 $style = array(
-    'border' => true,  // Agrega un borde al código de barras
-    'padding' => 2.5,    // Espacio alrededor del código de barras
-    'fgcolor' => array(0,0,0), // Color de las líneas del código de barras (negro)
-    'bgcolor' => false, // Sin color de fondo
-    'text' => true,     // Muestra el texto del código de barras
+    'border' => true,
+    'vpadding' => 'auto',
+    'hpadding' => 'auto',
+    'fgcolor' => array(0,0,0),
+    'bgcolor' => false, //array(255,255,255)
+    'module_width' => 1, // width of a single module in points
+    'module_height' => 1 // height of a single module in points
 );
 
-//$pdf->write1DBarcode('www.quickparkse.com/', 'C128', '5', '', '', 12, 0.4, $style, 'N');
-//
-//$pdf->Ln();
+// write RAW 2D Barcode
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// set style for barcode
+$style = array(
+    'border' => 2,
+    'vpadding' => 'auto',
+    'hpadding' => 'auto',
+    'fgcolor' => array(0,0,0),
+    'bgcolor' => false, //array(255,255,255)
+    'module_width' => 1, // width of a single module in points
+    'module_height' => 1 // height of a single module in points
+);
+
+
+
+// QRCODE,M : QR-CODE Medium error correction
+$pdf->write2DBarcode($cuviculo, 'QRCODE,Q', 10, 80, 55, 55, $style, 'N    ');
+$pdf->Text(5, 5, '');
 
 
 //Close and output PDF document

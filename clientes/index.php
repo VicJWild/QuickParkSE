@@ -64,9 +64,10 @@ include('../layout/admin/datos_usuario_sesion.php');
                             <table id="table_id" class="table table-bordered table-sm table-striped">
                                 <thead>
                                 <th><center>Nro</center></th>
-                                <th>Nombre del cliente</th>
-                                <th>Ci del cliente</th>
+                                <th>Nombre del Cliente</th>
+                                <th>CI del Cliente</th>
                                 <th>Placa del Auto</th>
+                                <th>Telefono del Cliente</th>
                                 <th><center>Acción</center></th>
                                 </thead>
                                 <tbody>
@@ -81,12 +82,14 @@ include('../layout/admin/datos_usuario_sesion.php');
                                     $nombre_cliente = $datos_cliente['nombre_cliente'];
                                     $nit_ci_cliente = $datos_cliente['nit_ci_cliente'];
                                     $placa_auto = $datos_cliente['placa_auto'];
+                                    $telefono_cliente = $datos_cliente['telefono_cliente'];
                                     ?>
                                     <tr>
                                         <td><center><?php echo $contador_cliente;?></center></td>
                                         <td><?php echo $nombre_cliente;?></td>
                                         <td><?php echo $nit_ci_cliente;?></td>
                                         <td><?php echo $placa_auto;?></td>
+                                        <td><?php echo $telefono_cliente;?></td>
                                         <td>
                                             <center>
                                                 <a href="update.php?id=<?php echo $id_cliente; ?>" class="btn btn-outline-success"><b>Editar</b></a>

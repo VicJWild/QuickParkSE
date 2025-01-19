@@ -211,11 +211,16 @@ include('layout\admin\datos_usuario_sesion.php');
                                         <div class="col">
                                             <center>
                                                 <h2 style="color: #000000;"><?php echo $nro_espacio?></h2>
-                                                <button class="btn" style="border: #686868;background-color: #da0023 ; border: 2px solid; border-radius: 5px">
+                                                <button class="btn" style="border: #686868;background-color: #da0023 ; border: 2px solid; border-radius: 5px" id="btn_ocupado<?php echo $id_map;?>" data-toggle="modal" data-target="#exampleModal<?php echo $id_map;?>">
                                                     <img src="<?php echo $URL;?>/public/img/vehicle.png" width="100px" alt="car">
                                                     <p style="outline-style: auto ; background-color: #da0023; color: #FFFFFF; border-radius: 5px; "><?php echo $estado_espacio?></p>
                                                 </button>
+                                                <script>
+                                                    $('#btn_ocupado<?php echo $id_map;?>').click(function (){
+                                                        // alert("Ocupado");
 
+                                                    });
+                                                </script>
                                                 <?php
 
                                                 $query_datos_cliente = $pdo->prepare("SELECT * FROM tb_tickets WHERE cuviculo = '$nro_espacio' AND estado = '1' ");
@@ -237,7 +242,7 @@ include('layout\admin\datos_usuario_sesion.php');
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Datos del cliente</h5>
+                                                                <h5 class="modal-title" id="exampleModalLabel"><b>Datos del Registro</b></h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
@@ -259,11 +264,13 @@ include('layout\admin\datos_usuario_sesion.php');
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label for="staticEmail" class="col-sm-4 col-form-label">NIT/CI: </label>
+                                                                    <label for="staticEmail" class="col-sm-4 col-form-label">CI: </label>
                                                                     <div class="col-sm-8">
                                                                         <input type="text" class="form-control" value="<?php echo $nit_ci;?>" id="nit_ci<?php echo $id_map;?>" disabled>
                                                                     </div>
                                                                 </div>
+
+
 
                                                                 <div class="form-group row">
                                                                     <label for="staticEmail" class="col-sm-4 col-form-label">Fecha de ingreso:</label>
@@ -280,7 +287,7 @@ include('layout\admin\datos_usuario_sesion.php');
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label for="staticEmail" class="col-sm-4 col-form-label">Cuvículo:</label>
+                                                                    <label for="staticEmail" class="col-sm-4 col-form-label">Puesto:</label>
                                                                     <div class="col-sm-8">
                                                                         <input type="text" class="form-control" value="<?php echo $cuviculo;?>" id="cuviculo<?php echo $id_map;?>" disabled>
                                                                     </div>
@@ -288,10 +295,10 @@ include('layout\admin\datos_usuario_sesion.php');
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-                                                                <a href="tickets/controller_cancelar_ticket.php?id=<?php echo $id_ticket;?>&&cuviculo=<?php echo $cuviculo;?>" class="btn btn-danger">Cancelar ticket</a>
-                                                                <a href="tickets/reimprimir_ticket.php?id=<?php echo $id_ticket;?>" class="btn btn-primary">Volver a Imprimir</a>
-                                                                <button type="button" class="btn btn-success" id="btn_facturar<?php echo $id_map;?>">Facturar</button>
+                                                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Salir</button>
+                                                                <a href="ticket/controller_cancelar_ticket.php?id=<?php echo $id_ticket;?>&&cuviculo=<?php echo $cuviculo;?>" class="btn btn-outline-danger"><b>Cancelar ticket</b></a>
+                                                                <a href="ticket/reimprimir_ticket.php?id=<?php echo $id_ticket;?>" class="btn btn-outline-primary"><b>Volver a Imprimir</b></a>
+                                                                <button type="button" class="btn btn-outline-success" id="btn_facturar<?php echo $id_map;?>"><b>Facturar</b></button>
                                                                 <?php
                                                                 ///////////////////// recupera el id del cliente
                                                                 $query_datos_cliente_factura = $pdo->prepare("SELECT * FROM tb_clientes WHERE placa_auto = '$placa_auto' AND estado = '1' ");
@@ -326,7 +333,6 @@ include('layout\admin\datos_usuario_sesion.php');
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </center>
                                         </div>
                                         <?php
