@@ -59,19 +59,20 @@ foreach($datos_clientes as $datos_cliente){
     $nit_ci_cliente = $datos_cliente['nit_ci_cliente'];
     $placa_auto = $datos_cliente['placa_auto'];
 }
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
 // create new PDF document
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(79,175), true, 'UTF-8', false);
+$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(79,190), true, 'UTF-8', false);
 
 // set document information
 $pdf->setCreator(PDF_CREATOR);
-$pdf->setAuthor('Sistema de parqueo');
-$pdf->setTitle('Sistema de parqueo');
-$pdf->setSubject('Sistema de parqueo');
+$pdf->setAuthor('Vic');
+$pdf->setTitle('QuickPark');
+$pdf->setSubject('Servicio de Estacionamiento');
 $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 
 // remove default header/footer
@@ -82,7 +83,7 @@ $pdf->setPrintFooter(false);
 $pdf->setDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->setMargins(5, 5, 5);
+$pdf->setMargins(1, 1, 5);
 
 // set auto page breaks
 $pdf->setAutoPageBreak(true, 5);
@@ -108,25 +109,23 @@ $pdf->AddPage();
 
 
 
-// create some HTML content
+// crear contenido html
 $html = '
 <div>
     <p style="text-align: center">
-        <b>'.$nombre_parqueo.'</b> <br>
+        <b style="font-size: larger">'.$nombre_parqueo.'</b> <br>
         '.$actividad_empresa.' <br>
-        SUCURSAL No '.$sucursal.' <br>
-        '.$direccion.' <br>
-        ZONA: '.$zona.' <br>
-        TELÉFONO: '.$telefono.' <br>
-        '.$departamento_ciudad.' - '.$pais.' <br>
+        SUCURSAL '.$sucursal.' <br>
+        '.$telefono.' <br>
+        '.$direccion.', '.$zona.', '.$departamento_ciudad.' - '.$pais.'
         --------------------------------------------------------------------------------
-         <b>FACTURA Nro.</b> '.$nro_factura.'
+         <b>FACTURA Nº [ '.$nro_factura.' ]</b> 
         --------------------------------------------------------------------------------
         <div style="text-align: left">
            
             <b>DATOS DEL CLIENTE</b> <br>
             <b>SEÑOR(A): </b> '.$nombre_cliente.' <br>
-            <b>NIT/CI.: </b> '.$nit_ci_cliente.'  <br>
+            <b>CI.: </b> '.$nit_ci_cliente.'  <br>
             <b>Fecha de la factura: </b> '.$fecha_factura.' <br>
             -------------------------------------------------------------------------------- <br>
         <b>De: </b> '.$fecha_ingreso.'<b> Hora: </b>'.$hora_ingreso.'<br>
@@ -142,20 +141,20 @@ $html = '
          </tr>
          <tr>
             <td>'.$detalle.'</td>
-            <td style="text-align: center">Bs. '.$precio.'</td>
+            <td style="text-align: center">$ '.$precio.'</td>
             <td style="text-align: center">'.$cantidad.'</td>
-            <td style="text-align: center">Bs. '.$total.'</td>
+            <td style="text-align: center">$ '.$total.'</td>
          </tr>
          </table>
          <p style="text-align: right">
-         <b>Monto Total: </b> Bs. '.$monto_total.'
+         <b>Monto Total: </b>$ '.$monto_total.'
         </p>
         <p>
-            <b>Son: </b>'.$monto_literal.'
+
         </p>
         <br>
          -------------------------------------------------------------------------------- <br>
-         <b>USUARIO:</b> '.$user_sesion.' <br><br><br><br><br><br><br><br>
+         <b>USUARIO:</b> '.$user_sesion.' <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
          
         <p style="text-align: center">
         </p>
@@ -185,11 +184,11 @@ $style = array(
     'module_height' => 1 // height of a single module in points
 );
 
-$pdf->write2DBarcode($qr,'QRCODE,L',  22,109,30,30, $style);
+$pdf->write2DBarcode($qr,'QRCODE,L',  12,105,50,50, $style);
 
 
 
-
+ob_clean();
 //Close and output PDF document
 $pdf->Output('factura.pdf', 'I');
 

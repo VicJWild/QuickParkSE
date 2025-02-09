@@ -1,4 +1,3 @@
-
 <?php
 // Include the main TCPDF library (search for installation path).
 require_once('../app/templeates/TCPDF-main/tcpdf.php');
@@ -19,6 +18,69 @@ foreach($informacions as $informacion){
     $telefono = $informacion['telefono'];
     $departamento_ciudad = $informacion['departamento_ciudad'];
     $pais = $informacion['pais'];
+}
+
+
+//cargar la información del ticket
+
+$query_tickets = $pdo->prepare("SELECT * FROM tb_tickets WHERE estado = '1' ");
+$query_tickets->execute();
+$tickets = $query_tickets->fetchAll(PDO::FETCH_ASSOC);
+foreach($tickets as $ticket){
+    $id_ticket = $ticket['id_ticket'];
+    $nombre_cliente = $ticket['nombre_cliente'];
+    $nit_ci = $ticket['nit_ci'];
+    $cuviculo = $ticket['cuviculo'];
+    $fecha_ingreso = $ticket['fecha_ingreso'];
+    $hora_ingreso = $ticket['hora_ingreso'];
+    $user_sesion = $ticket['user_sesion'];
+    $placa_auto = $ticket['placa_auto'];
+}
+
+/////////// rescatar la informacion de la factura
+$query_fascturas = $pdo->prepare("SELECT * FROM tb_facturaciones WHERE estado = '1' ");
+$query_fascturas->execute();
+$facturas = $query_fascturas->fetchAll(PDO::FETCH_ASSOC);
+foreach($facturas as $factura){
+    $id_facturacion = $factura['id_facturacion'];
+    $id_informacion = $factura['id_informacion'];
+    $nro_factura = $factura['nro_factura'];
+    $id_cliente = $factura['id_cliente'];
+    $fecha_factura = $factura['fecha_factura'];
+    $fecha_ingreso = $factura['fecha_ingreso'];
+    $hora_ingreso = $factura['hora_ingreso'];
+    $fecha_salida = $factura['fecha_salida'];
+    $hora_salida = $factura['hora_salida'];
+    $tiempo = $factura['tiempo'];
+    $cuviculo = $factura['cuviculo'];
+    $detalle = $factura['detalle'];
+    $precio = $factura['precio'];
+    $cantidad = $factura['cantidad'];
+    $total = $factura['total'];
+    $monto_total = $factura['monto_total'];
+    $monto_literal = $factura['monto_literal'];
+    $user_sesion = $factura['user_sesion'];
+    $qr = $factura['qr'];
+}
+
+
+//informacion de usuarios
+$query_usuario = $pdo->prepare("SELECT * FROM tb_usuarios WHERE Estado = '1' ");
+$query_usuario->execute();
+$usuarios = $query_usuario->fetchAll(PDO::FETCH_ASSOC);
+foreach($usuarios as $usuario){
+
+    $nombre = $usuario['nombres'];
+    $email = $usuario['email'];
+}
+
+//informacion de roles
+$query_roles = $pdo->prepare("SELECT * FROM tb_roles WHERE estado = '1' ");
+$query_roles->execute();
+$roles = $query_roles->fetchAll(PDO::FETCH_ASSOC);
+foreach($roles as $role) {
+    $id_rol = $role['id_rol'];
+    $nombre_rol = $role['nombre'];
 }
 
 
@@ -83,11 +145,11 @@ $html = '
         <div style="text-align: left">
            
             <b>DATOS DEL CLIENTE</b> <br>
-            <b>SEÑOR(A): </b> FREDDY EDDY HILARI MICHUA <br>
-            <b>NIT/CI.: </b> 12345678  <br>
-            <b>Fecha de la factura: </b> La Paz, 11 de octubre de 2022  <br>
+            <b>SEÑOR(A): </b> '.$nombre_cliente.' <br>
+            <b>CI.: </b> '.$nit_ci.'  <br>
+            <b>Fecha de la factura: </b> ['.$fecha_ingreso.' '.$hora_ingreso.']  <br>
             -------------------------------------------------------------------------------- <br>
-        <b>De: </b> 11/10/2022 <b>Hora: </b>18:00<br>
+        <b>De: </b> '.$fecha_ingreso.' <b>Hora: </b>'.$hora_ingreso.'<br>
         <b>A: </b> 11/10/2022  <b>Hora: </b>20:00<br>
         <b>Tiempo:  </b> 2 horas en el cuvicúlo 10<br>
          -------------------------------------------------------------------------------- <br>
@@ -113,7 +175,7 @@ $html = '
         </p>
         <br>
          -------------------------------------------------------------------------------- <br>
-         <b>USUARIO:</b> FREDDY EDDY HILARI MICHUA <br><br><br><br><br><br><br><br><br>
+         <b>USUARIO:</b> '.$user_sesion.' <br><br><br><br><br><br><br><br><br>
          
         <p style="text-align: center">
         </p>

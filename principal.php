@@ -3,6 +3,24 @@
 include('app\config.php');
 include('layout\admin\datos_usuario_sesion.php');
 
+// Recuperar el id informaciones
+$query_informacions = $pdo->prepare("SELECT * FROM tb_informaciones WHERE estado = '1' ");
+$query_informacions->execute();
+$informacions = $query_informacions->fetchAll(PDO::FETCH_ASSOC);
+foreach($informacions as $informacion){
+    $id_informacion = $informacion['id_informacion'];
+}
+
+// Recuperar el nro de la factura
+$contador_del_nro_de_factura = 0;
+$query_facturaciones = $pdo->prepare("SELECT * FROM tb_facturaciones WHERE estado = '1' ");
+$query_facturaciones->execute();
+$facturaciones = $query_facturaciones->fetchAll(PDO::FETCH_ASSOC);
+foreach($facturaciones as $facturacione){
+    $contador_del_nro_de_factura = $contador_del_nro_de_factura + 1;
+}
+$contador_del_nro_de_factura = $contador_del_nro_de_factura + 1;
+
 // echo "Bienvenido";
 ?>
 <!DOCTYPE html>
@@ -31,7 +49,10 @@ include('layout\admin\datos_usuario_sesion.php');
 
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title"><b>Mapa de Puestos</b></h3>
+                            <h3 class="card-title">
+                                <b>Mapa de Puestos</b>
+                                <?php include ('layout/admin/contadormapa.php'); ?>
+                            </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -177,17 +198,17 @@ include('layout\admin\datos_usuario_sesion.php');
 
                                                                             var url_1 = 'servicios/controller_cambiar_estado_ocupado.php';
                                                                             $.get(url_1,{cuviculo:cuviculo},function (datos) {
-                                                                                $('#respuesta_ticket').html(datos);
+                                                                                $('#respuesta_ticket<?php echo $id_map;?>').html(datos);
                                                                             });
 
                                                                             var url_2 = 'clientes/controller_registrar_clientes.php';
                                                                             $.get(url_2,{nombre_cliente:nombre_cliente,nit_ci:nit_ci,telefono_cliente:telefono_cliente,placa:placa},function (datos) {
-                                                                                $('#respuesta_ticket').html(datos);
+                                                                                $('#respuesta_ticket<?php echo $id_map;?>').html(datos);
                                                                             });
 
                                                                             var url_3 = 'ticket/controller_registrar_ticket.php';
                                                                             $.get(url_3,{placa:placa,nombre_cliente:nombre_cliente,nit_ci:nit_ci,telefono_cliente:telefono_cliente,fecha_ingreso:fecha_ingreso,hora_ingreso:hora_ingreso,cuviculo:cuviculo,user_session:user_session},function (datos) {
-                                                                                $('#respuesta_ticket').html(datos);
+                                                                                $('#respuesta_ticket<?php echo $id_map;?>').html(datos);
                                                                             });
 
 
@@ -196,7 +217,7 @@ include('layout\admin\datos_usuario_sesion.php');
                                                                     });
                                                                 </script>
                                                             </div>
-                                                            <div id="respuesta_ticket">
+                                                            <div id="respuesta_ticket<?php echo $id_map;?>">
 
                                                             </div>
                                                         </div>
@@ -236,6 +257,7 @@ include('layout\admin\datos_usuario_sesion.php');
                                                     $hora_ingreso = $datos_cliente['hora_ingreso'];
                                                     $user_sesion = $datos_cliente['user_sesion'];
                                                 }
+
                                                 ?>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="exampleModal<?php echo $id_map;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -269,7 +291,6 @@ include('layout\admin\datos_usuario_sesion.php');
                                                                         <input type="text" class="form-control" value="<?php echo $nit_ci;?>" id="nit_ci<?php echo $id_map;?>" disabled>
                                                                     </div>
                                                                 </div>
-
 
 
                                                                 <div class="form-group row">
@@ -318,6 +339,8 @@ include('layout\admin\datos_usuario_sesion.php');
                                                                         var hora_ingreso = "<?php echo $hora_ingreso; ?>";
                                                                         var cuviculo = "<?php echo $cuviculo; ?>";
                                                                         var user_sesion = "<?php echo $user_sesion; ?>";
+
+                                                                        // alert(user_sesion);
 
                                                                         var url_4 = 'facturacion/controller_registrar_factura.php';
                                                                         $.get(url_4,{id_informacion:id_informacion,nro_factura:nro_factura,id_cliente:id_cliente,fecha_ingreso:fecha_ingreso,hora_ingreso:hora_ingreso,cuviculo:cuviculo,user_sesion:user_sesion},function (datos) {

@@ -57,10 +57,11 @@ $tiempo = $diff->days." días con ".$diff->h." horas con ".$diff->i." minutos ";
 //////////////////// CALCULA LA DIFERENCIA ENTRE EL TIEMPO DE ENTRADA Y DE SALIDA /////////////////////////////
 
 $cuviculo = $_GET['cuviculo'];
-$detalle = "Servicio de parqueo de ".$tiempo;
+$detalle = "Estacionamiento $3 el día x ".$tiempo;
 
 
 ///////// calcula el precio del cliente en horas /////////////////
+$precio_hora = 0;
 $query_precios = $pdo->prepare("SELECT * FROM tb_precios WHERE cantidad = '$diff->h' AND detalle = 'HORAS' AND estado = '1'  ");
 $query_precios->execute();
 $datos_precios = $query_precios->fetchAll(PDO::FETCH_ASSOC);
@@ -71,7 +72,7 @@ foreach($datos_precios as $datos_precio){
 
 
 ///////// calcula el precio del cliente en dias /////////////////
-$precio_dia = 0;
+$precio_dia = 3;
 $query_precios_dias = $pdo->prepare("SELECT * FROM tb_precios WHERE cantidad = '$diff->days' AND detalle = 'DIAS' AND estado = '1'  ");
 $query_precios_dias->execute();
 $datos_precios_dias = $query_precios_dias->fetchAll(PDO::FETCH_ASSOC);
@@ -106,9 +107,9 @@ foreach($datos_clientes as $datos_cliente){
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-$qr = "Factura realizada por el sistema de paqueo, al cliente ".$nombre_cliente." con CI/NIT:
- ".$nit_ci_cliente." con el vehiculo con número de placa ".$placa_auto." y esta factura se genero en
-  ".$fecha_factura." a hr: ".$hora_salida;
+$qr = "Factura realizada por el Sistema de Estacionamiento, al cliente ".$nombre_cliente." con CI:
+ ".$nit_ci_cliente." al vehiculo con numero de placa ".$placa_auto." y esta factura se realiza en
+  ".$fecha_factura." a las: ".$hora_salida;
 
 
 $sentencia = $pdo->prepare('INSERT INTO tb_facturaciones
@@ -137,9 +138,9 @@ $sentencia->bindParam('fyh_creacion',$fechaHora);
 $sentencia->bindParam('estado',$estado_del_registro);
 
 if($sentencia->execute()){
-    echo 'success';
+//    echo 'success';
 
-    $estado_espacio = "LIBRE";
+    $estado_espacio = "DISPONIBLE";
     date_default_timezone_set("America/caracas");
     $fechaHora = date("Y-m-d h:i:s");
     $sentencia = $pdo->prepare("UPDATE tb_mapeos SET

@@ -20,7 +20,7 @@ $sentencia->bindParam(':id',$id_user);
 if($sentencia->execute()){
     echo "se elimino el registro de la manera correcta";
     ?>
-    <script>location.href = "lista_usuarios.php";</script>
+    <script>location.href = "../lista_usuarios.php";</script>
     <?php
 }else{
     echo "error al eliminar el registro";

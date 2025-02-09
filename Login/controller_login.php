@@ -22,7 +22,7 @@ foreach($usuarios as $usuario){
 if( ($usuario_user == $email_tabla) && ($password_user == $password_tabla) ){
     ?>
         <div class="alert alert-success" role="alert">
-         Sesión Iniciada.
+         <b>Sesión Iniciada.</b>
         </div>
         <script>
             location.href = "principal.php";
@@ -32,7 +32,7 @@ if( ($usuario_user == $email_tabla) && ($password_user == $password_tabla) ){
 }else{
     ?>
         <div class="alert alert-danger" role="alert">
-         Usuario/Contraseña Incorrectos. Verifique sus datos.
+         <b>Usuario/Contraseña Incorrectos. Verifique sus datos.</b>
         </div>
         <script>
             $('#password').val("");$('#password').focus();
